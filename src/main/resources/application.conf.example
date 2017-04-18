@@ -1,0 +1,72 @@
+hubot {
+  name = "ihrbot"
+
+  listeners = ["com.iheart.listeners.OpsListener",
+               "com.iheart.listeners.Ec2Listener",
+               "com.iheart.listeners.Route53Listener",
+               "com.iheart.listeners.ElbListener",
+               "com.iheart.listeners.AmpNotifyListener"]
+
+  middleware = []
+
+  adapter = "org.dberg.hubot.adapter.HipchatAdapter"
+
+  brain = "mapdb"
+
+  brainFile = "/var/ihrbot/hubotbrain.db"
+
+
+}
+
+hipchat {
+  jid="somejid"
+  password="somepass" 
+  chatAlias = "ScalaBot" //cant be same as name, need to read XEP to see why
+
+}
+
+listeners {
+
+  ops {
+    pagerDutyApiKey = "yourKey"
+    pagerDutyUrl = "pdAPIURL" 
+    pagerDutyPolicies = [ "TeamA", "Teamb"]
+    members = "@usera @userb @userc"
+    footer="Footnote to include"
+  }
+
+  ec2 {
+
+    dev {
+      vpc_id = "vpc-XXXXXX"
+    }
+
+    staging {
+      aws_access_key = "yourkey"
+      aws_secret_key = "yoursecret"
+      vpc_id = "vpc-XXXXX"
+    }
+
+    prod {
+      aws_access_key = "yourkey"
+      aws_secret_key = "yoursecret"
+      vpc_id = "vpc-XXXX"
+    }
+  }
+
+  route53 {
+
+    nonprod {
+      aws_access_key = "yourkey"
+      aws_secret_key = "yoursecret"
+      zone_id = "ZONEID"
+    }
+
+    prod {
+      aws_access_key = "yourkey"
+      aws_secret_key = "yoursecret"
+      zone_id = "ZONEID"
+    }
+  }
+  
+}
