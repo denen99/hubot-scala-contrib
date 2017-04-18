@@ -1,11 +1,10 @@
 hubot {
   name = "ihrbot"
 
-  listeners = ["com.iheart.listeners.OpsListener",
-               "com.iheart.listeners.Ec2Listener",
+  listeners = [ "com.iheart.listeners.Ec2Listener",
                "com.iheart.listeners.Route53Listener",
                "com.iheart.listeners.ElbListener",
-               "com.iheart.listeners.AmpNotifyListener"]
+               "com.iheart.listeners.BlastListener"]
 
   middleware = []
 
@@ -13,7 +12,7 @@ hubot {
 
   brain = "mapdb"
 
-  brainFile = "/var/ihrbot/hubotbrain.db"
+  brainFile = "/var/hubot/hubotbrain.db"
 
 
 }
@@ -26,14 +25,6 @@ hipchat {
 }
 
 listeners {
-
-  ops {
-    pagerDutyApiKey = "yourKey"
-    pagerDutyUrl = "pdAPIURL" 
-    pagerDutyPolicies = [ "TeamA", "Teamb"]
-    members = "@usera @userb @userc"
-    footer="Footnote to include"
-  }
 
   ec2 {
 
